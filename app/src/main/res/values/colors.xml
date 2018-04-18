@@ -1,6 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">@color/app_default_green</color>
+    <color name="colorPrimaryDark">@color/app_default_green</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="gray">#ebebeb</color>
+    <color name="light_blue">#6593cb</color>
+    <color name="salary_status_red">#ff6941</color>
+    <color name="salary_status_gray">#999999</color>
+    <color name="salary_status_green">#3cc2a9</color>
+    <color name="salary_gray">#b2b2b2</color>
+    <color name="transparent">#00000000</color>
+    <color name="province_line_border">#C7C7C7</color>
+    <color name="app_default_green">#3ac1a7</color>
+    <color name="list_item_bg_normal">@color/white</color>
+    <color name="list_item_bg_checked">@color/gray</color>
+    <color name="list_item_bg_pressed">@color/gray</color>
+    <color name="half_black">#66000000</color>
+    <color name="list_divider">#e6e6e6</color>
+    <color name="flag_blue">#50AEF0</color>
+
+    <color name="contact_icon_blue">#88ABDA</color>
+    <color name="contact_icon_green">#ADD599</color>
+    <color name="contact_icon_purple">#A296D0</color>
+    <color name="contact_icon_yellow">#EAE15F</color>
+
+    <color name="message_center_normal_text">#353535</color>
+    <color name="message_center_bg_gray">#F1F1F1</color>
+    <color name="message_center_ref_bg_gray">#F3F3F3</color>
+    <color name="message_center_line_gray">#E5E5E5</color>
+    <color name="message_center_time_gray">#B4B4B4</color>
+    <color name="message_center_filter_gray">#A5A5A5</color>
+    <color name="message_center_reference_bg_gray">#ADADAD</color>
+    <color name="message_center_time_red">#EC6941</color>
+    <color name="message_center_reason_red">#EC6B6B</color>
+
+    <!-- 扫描二维码用  -->
+    <color name="contents_text">#ff000000</color>
+    <color name="encode_view">#ffffffff</color>
+    <color name="possible_result_points">#c0ffbd21</color> <!-- Android standard ICS color -->
+    <color name="result_minor_text">#ffc0c0c0</color>
+    <color name="result_points">#c099cc00</color> <!-- Android standard ICS color -->
+    <color name="result_text">#ffffffff</color>
+    <color name="result_view">#b0000000</color>
+    <color name="status_text">#ffffffff</color>
+    <!--<color name="transparent">#00000000</color>-->
+    <color name="viewfinder_laser">#ffcc0000</color> <!-- Android standard ICS color -->
+    <color name="viewfinder_mask">#59000000</color>
+    <color name="capture_text_cover_bg">#AA535353</color>
+    <color name="seek_bar_text">#fff6f6f6</color>
+
+    <color name="gridview_line">#E5E5E5</color>
+    <color name="activity_bg_gray">#F1F1F1</color>
+    <color name="text_gray_light">#999999</color>
+    <color name="text_gray_xxlight">#e0e0e0</color>
+    <color name="text_gray_normal">#666666</color>
+    <color name="text_gray_dark">#333333</color>
+    <color name="text_gray_line">#EEEEEE</color>
+    <color name="text_gray_dark_lf">#404040</color>
 </resources>
