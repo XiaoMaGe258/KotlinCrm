@@ -1,8 +1,6 @@
 package com.max.app.kotlincrm
 
-import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
@@ -27,7 +25,12 @@ class MainManagerActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_manager)
+        initActionbar()
         initView()
+    }
+
+    private fun initActionbar(){
+        setAbTitle("小劳易管CRM")
     }
 
     private fun initView(){

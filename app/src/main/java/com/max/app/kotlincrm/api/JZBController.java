@@ -1,21 +1,8 @@
 package com.max.app.kotlincrm.api;
 
-//import android.text.TextUtils;
-//
-//import com.jianzhibao.crm.mobile.application.JZBApplication;
-//import com.jianzhibao.crm.mobile.utils.L;
-//import com.jianzhibao.crm.mobile.utils.Utils;
-//import com.loopj.android.http.AsyncHttpClient;
-//import com.loopj.android.http.AsyncHttpResponseHandler;
-//import com.loopj.android.http.PersistentCookieStore;
-//import com.loopj.android.http.RequestParams;
-//
-//import java.io.File;
-//
-//import cz.msebera.android.httpclient.Header;
-
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Looper;
@@ -24,7 +11,7 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.BitmapCallback;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.Response;
-import com.max.app.kotlincrm.LoginActivity;
+import com.max.app.kotlincrm.ui.LoginActivity;
 import com.max.app.kotlincrm.utils.L;
 import com.max.app.kotlincrm.utils.MyToast;
 import com.max.app.kotlincrm.utils.NetConnectUtil;
@@ -40,7 +27,6 @@ public class JZBController {
 
     private static Context mContext;
     private static JZBController mJZBController;
-    private static boolean mIs401 = false;
 
     private JZBController() {
     }
@@ -64,6 +50,7 @@ public class JZBController {
         return mJZBController;
     }
 
+    //登录
     public void postLogin (String username, String password, StringCallback responseHandler){
         String url = JZBConstants.API_IP + "/user/oauth";
         HashMap<String, Object> params = new HashMap<>();
@@ -85,26 +72,24 @@ public class JZBController {
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
-                        mIs401 = false;
                         responseHandler.onSuccess(response);
                     }
 
                     @Override
                     public void onError(Response<String> response) {
                         super.onError(response);
-                        responseHandler.onError(response);
-                        if (response.code() != 401 || mIs401) {
+                        if (response.code() != 401) {
+                            responseHandler.onError(response);
                             return;
                         }
-                        mIs401 = true;
                         if (mContext instanceof Activity) {
                             final Activity activity = (Activity) mContext;
                             new Handler(Looper.getMainLooper()).post(new Runnable() {
                                 @Override
                                 public void run() {
                                     MyToast.makeText(mContext, "未登录或者登录已经过期,请重新登录");
-//                                    LoginActivity.actionLoginAcivity(activity, false);
-//                                    Sp.delete_SP(mContext, JZBConstants.USERCONFIG);
+                                    activity.startActivity(new Intent(activity, LoginActivity.class));
+                                    Sp.delete_SP(mContext, JZBConstants.SP_USERINFO);
                                 }
                             });
                         }
@@ -158,8 +143,9 @@ public class JZBController {
                                 @Override
                                 public void run() {
                                     MyToast.makeText(mContext, "未登录或者登录已经过期,请重新登录");
-//                                    LoginActivity.actionLoginAcivity(activity, false);
-//                                    MySharedPreferences.delete_SP(mContext, JZBConstants.USERCONFIG);
+                                    activity.startActivity(new Intent(activity, LoginActivity.class));
+                                    Sp.delete_SP(mContext, JZBConstants.SP_USERINFO);
+//                                    JZBApplication.recycleAllActivity();
                                 }
                             });
                         }
@@ -208,7 +194,22 @@ public class JZBController {
                     @Override
                     public void onError(Response<String> response) {
                         super.onError(response);
-                        responseHandler.onError(response);
+                        if (response.code() != 401) {
+                            responseHandler.onError(response);
+                            return;
+                        }
+                        if (mContext instanceof Activity) {
+                            final Activity activity = (Activity) mContext;
+                            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    MyToast.makeText(mContext, "未登录或者登录已经过期,请重新登录");
+                                    activity.startActivity(new Intent(activity, LoginActivity.class));
+                                    Sp.delete_SP(mContext, JZBConstants.SP_USERINFO);
+//                                    JZBApplication.recycleAllActivity();
+                                }
+                            });
+                        }
                     }
                 });
     }

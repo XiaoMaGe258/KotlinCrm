@@ -1,5 +1,6 @@
 package com.max.app.kotlincrm.ui;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,10 +14,11 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.max.app.kotlincrm.JZBApplication;
 import com.max.app.kotlincrm.R;
 
 
-public class BaseActivity extends AppCompatActivity implements View.OnClickListener, OnTouchListener {
+public class BaseActivity extends AppCompatActivity implements View.OnClickListener {
 
 	public Activity mContext;
 
@@ -48,11 +50,13 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 	
 	/**默认顶部系统栏的颜色*/
 	private final int DEFAULT_SYSTEM_BAR_COLOR = R.color.app_default_green;
-	
+
+	//ToolBar下方，页面内容
+	private LinearLayout mContentView;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-//		JZBApplication.ALLACTIVITY.add(this);
+		JZBApplication.AllActivity.add(this);
 		mContext = this;
 		setContentView(R.layout.custom_actionbar_general);
 		initCustomActionBar();
@@ -65,42 +69,35 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 	}
 
 	private void initCustomActionBar(){
-		mToolbar = (Toolbar) findViewById(R.id.toolbar_root);
-		mActionBarTitle = (TextView) mToolbar.findViewById(R.id.ab_title);
-		mActionNextLayout = (RelativeLayout) mToolbar.findViewById(R.id.action_next_layout);
-		mActionBackLayout = (RelativeLayout) mToolbar.findViewById(R.id.action_back_layout);
-		mActionBarNextText = (TextView) mToolbar.findViewById(R.id.action_next_text);
-		mActionBarBackText = (TextView) mToolbar.findViewById(R.id.action_back_text);
-		mActionBarNextFlag = (ImageView) mToolbar.findViewById(R.id.action_next_flag);
-		mActionBarBackFlag = (ImageView) mToolbar.findViewById(R.id.action_back_flag);
-		mBlackAlertCoverImage = (ImageView) mToolbar.findViewById(R.id.black_alert_cover_image);
+		mToolbar = findViewById(R.id.toolbar_root);
+		mActionBarTitle = mToolbar.findViewById(R.id.ab_title);
+		mActionNextLayout = mToolbar.findViewById(R.id.action_next_layout);
+		mActionBackLayout = mToolbar.findViewById(R.id.action_back_layout);
+		mActionBarNextText = mToolbar.findViewById(R.id.action_next_text);
+		mActionBarBackText = mToolbar.findViewById(R.id.action_back_text);
+		mActionBarNextFlag = mToolbar.findViewById(R.id.action_next_flag);
+		mActionBarBackFlag = mToolbar.findViewById(R.id.action_back_flag);
+		mBlackAlertCoverImage = mToolbar.findViewById(R.id.black_alert_cover_image);
 		mActionBackLayout.setOnClickListener(this);
-		mActionBackLayout.setOnTouchListener(this);
-		mActionNextLayout.setOnTouchListener(this);
+		mActionBackLayout.setOnTouchListener(mOnTouchListener);
+		mActionNextLayout.setOnTouchListener(mOnTouchListener);
 	}
 	
 
-	LinearLayout contentView;
 	public void setContentView(int layoutSourceId){
 		if (layoutSourceId == R.layout.custom_actionbar_general) {
 			super.setContentView(R.layout.custom_actionbar_general);
-			contentView = (LinearLayout) findViewById(R.id.layout_center);
-			if (contentView != null) {
-				contentView.removeAllViews();
+			mContentView = findViewById(R.id.layout_center);
+			if (mContentView != null) {
+				mContentView.removeAllViews();
 			}
 
 		} else {
 			View addView = LayoutInflater.from(this).inflate(layoutSourceId, null);
-			contentView.addView(addView, new LinearLayout.LayoutParams(
+			mContentView.addView(addView, new LinearLayout.LayoutParams(
 					LinearLayout.LayoutParams.MATCH_PARENT,
 					LinearLayout.LayoutParams.MATCH_PARENT));
 		}
-	}
-
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-//		JZBApplication.ALLACTIVITY.remove(this);
 	}
 
 	@Override
@@ -112,13 +109,25 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 		}
 	}
 
-	@Override
-	public boolean onTouch(View v, MotionEvent event) {
-		if(event.getAction() == MotionEvent.ACTION_DOWN){
-			v.setAlpha(0.5f);
-		}else if(event.getAction() == MotionEvent.ACTION_UP){
-			v.setAlpha(1f);
+	public OnTouchListener mOnTouchListener = new OnTouchListener() {
+		@Override
+		public boolean onTouch(View v, MotionEvent event) {
+			if(event.getAction() == MotionEvent.ACTION_DOWN){
+				v.setAlpha(0.5f);
+			}else if(event.getAction() == MotionEvent.ACTION_UP){
+				v.setAlpha(1f);
+			}
+			return false;
 		}
-		return false;
+	};
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		JZBApplication.AllActivity.remove(this);
+	}
+
+	protected void setAbTitle(String title){
+		mActionBarTitle.setText(title);
 	}
 }

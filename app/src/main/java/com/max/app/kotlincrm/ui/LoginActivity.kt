@@ -1,4 +1,4 @@
-package com.max.app.kotlincrm
+package com.max.app.kotlincrm.ui
 
 import android.app.Activity
 import android.content.Intent
@@ -9,6 +9,8 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.MotionEvent
 import android.view.View
+import com.max.app.kotlincrm.MainManagerActivity
+import com.max.app.kotlincrm.R
 import com.max.app.kotlincrm.api.JZBConstants
 import com.max.app.kotlincrm.api.JZBController
 import com.max.app.kotlincrm.api.JzbResponseHandler
@@ -22,14 +24,17 @@ import org.json.JSONObject
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     private var mContext: Activity? = null
+    private var passwordFlag = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         Sp.init_SP_Instance(this, JZBConstants.SP_USERINFO)
         val isLogin = Sp.get_Boolean(JZBConstants.TAG_ISLOGIN, false)
         if (isLogin) {
-//            MainManagerActivity.actionMainManagerActivity(mContext)
+            toMain()
             this.finish()
+            return
         }
         mContext = this
         initView()
@@ -51,7 +56,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
     }
-    private var passwordFlag = false
+
     override fun onClick(v: View?) {
         when (v) {
             btn_login -> {
@@ -76,7 +81,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    fun login(userName: String, password: String){
+    private fun login(userName: String, password: String){
         JZBController.getInstance(this).postLogin(userName, password, object : JzbResponseHandler() {
             override fun onHttpSuccessStatusOk(jsonObject: JSONObject?) {
                 MyToast.makeText(mContext, "登录成功")
@@ -92,6 +97,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     Sp.put_String(JZBConstants.ROLENAME, roleName)
                     Sp.put_String(JZBConstants.AVATAR, avatar)
                     Sp.put_String(JZBConstants.ROLENUMBER, roleNumber)
+                    Sp.put_Boolean(JZBConstants.TAG_ISLOGIN, true)
                     //记住用户名密码
                     if(cb_remember_password.isChecked){
                         Sp.init_SP_Instance(mContext, JZBConstants.SP_AUTHINFO)
