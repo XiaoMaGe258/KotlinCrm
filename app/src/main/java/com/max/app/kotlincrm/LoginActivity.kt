@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.view.MotionEvent
@@ -11,6 +12,7 @@ import android.view.View
 import com.max.app.kotlincrm.api.JZBConstants
 import com.max.app.kotlincrm.api.JZBController
 import com.max.app.kotlincrm.api.JzbResponseHandler
+import com.max.app.kotlincrm.utils.AESUtil
 import com.max.app.kotlincrm.utils.L
 import com.max.app.kotlincrm.utils.MyToast
 import com.max.app.kotlincrm.utils.Sp
@@ -37,6 +39,17 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         btn_login.setOnTouchListener(mOnTouchListener)
         btn_login.setOnClickListener(this)
         iv_password_eye.setOnClickListener(this)
+
+        //自动填写用户名密码
+        if(cb_remember_password.isChecked){
+            Sp.init_SP_Instance(mContext, JZBConstants.SP_AUTHINFO)
+            val userName = Sp.get_String(JZBConstants.TAG_AUTH_USERNAME, "")
+            val password = Sp.get_String(JZBConstants.TAG_AUTH_PASSWORD, "")
+            et_login_username.setText(userName)
+            if (!TextUtils.isEmpty(password)) {
+                et_login_password.setText(AESUtil.decryptAES(password, JZBConstants.AKey))
+            }
+        }
     }
     private var passwordFlag = false
     override fun onClick(v: View?) {
@@ -80,18 +93,12 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     Sp.put_String(JZBConstants.AVATAR, avatar)
                     Sp.put_String(JZBConstants.ROLENUMBER, roleNumber)
                     //记住用户名密码
-//                    Sp.init_SP_Instance(mContext, JZBConstants.SP_AUTHINFO)
-//                        MySharedPreferences.put_String(JZBConstants.AUTH_USERNAME, username)
-//                        val pswd = if (mRememberPasswordIcon.isChecked()) AESUtil.encryptAES(password, JZBConstants.AKey) else ""
-//                        MySharedPreferences.put_String(JZBConstants.AUTH_PASSWORD, pswd)
-//                        mHandler.sendEmptyMessage(LoginSuccess)
-//                    } else {
-//                        val msg = json.optString("msg")
-//                        mHandler.sendEmptyMessage(LoginFailer)
-//                        val message = mHandler.obtainMessage()
-//                        message.what = LoginFailer
-//                        message.obj = msg
-//                        message.sendToTarget()
+                    if(cb_remember_password.isChecked){
+                        Sp.init_SP_Instance(mContext, JZBConstants.SP_AUTHINFO)
+                        Sp.put_String(JZBConstants.TAG_AUTH_USERNAME, userName)
+                        val pswd = AESUtil.encryptAES(password, JZBConstants.AKey)
+                        Sp.put_String(JZBConstants.TAG_AUTH_PASSWORD, pswd)
+                    }
                     toMain()
                 } catch (e: Exception) {
                     MyToast.makeText(mContext, "登录失败，请稍后重试")

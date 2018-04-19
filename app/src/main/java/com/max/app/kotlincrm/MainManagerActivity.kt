@@ -39,11 +39,11 @@ class MainManagerActivity : BaseActivity() {
         tv_user_role.text = Sp.get_String(JZBConstants.ROLENAME, "")
 
         initGridView()
-        gv_grid.adapter = GridViewAdapter(mGridViewList, mContext)
-        gv_grid.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
-            val item = parent.getItemAtPosition(position) as GridViewItem
-//            handlerGridViewItemOnclick(item.name)
-        }
+//        gv_grid.adapter = GridViewAdapter(mGridViewList, mContext)
+//        gv_grid.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
+//            val item = parent.getItemAtPosition(position) as GridViewItem
+////            handlerGridViewItemOnclick(item.name)
+//        }
     }
 
     private fun initGridView(){

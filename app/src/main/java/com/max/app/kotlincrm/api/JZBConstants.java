@@ -13,19 +13,24 @@ public class JZBConstants {
 
 	public static final String API_IP 					= DEBUG_MODE_ADVANCED ? API_TEST : API_ONLINE;
 
-	/**用户基本信息**/
-	public static final String SP_USERINFO 				= "userInfo";
-	/**用户登录信息**/
-	public static final String SP_AUTHINFO				= "authInfo";
-	/**是否登录**/
-	public static final String TAG_ISLOGIN 				= "isLogin";
+	public static final String AKey 					= "1a72d3619c835f1b0513d0d1376e34f1";
 
-	/**头像**/
+	//用户基本信息
+	public static final String SP_USERINFO 				= "userInfo";
+	//用户登录信息
+	public static final String SP_AUTHINFO				= "authInfo";
+	//是否登录
+	public static final String TAG_ISLOGIN 				= "isLogin";
+	//用户名，密码
+	public static final String TAG_AUTH_USERNAME 		= "userName";
+	public static final String TAG_AUTH_PASSWORD 		= "password";
+
+	//头像
 	public static final String AVATAR 					= "avatar";
-	/**当前登录的用户的名字**/
+	//当前登录的用户的名字
 	public static final String TRUENAME 				= "truename";
-	/**当前登录的用户的角色**/
+	//当前登录的用户的角色
 	public static final String ROLENAME 				= "roleName";
-	/**角色roleNumber**/
+	//角色roleNumber
 	public static final String ROLENUMBER 				= "roleNumber";
 }
