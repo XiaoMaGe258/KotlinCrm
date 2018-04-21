@@ -51,6 +51,10 @@
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
+        <activity android:name=".ui.AddCustomerActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.SettingActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

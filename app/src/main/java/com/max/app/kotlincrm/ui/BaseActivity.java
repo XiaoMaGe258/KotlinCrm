@@ -40,8 +40,9 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 	/**自定义ActionBar的右侧箭头*/
 	public ImageView mActionBarNextFlag;
 
-	/**黑屏提示时，actionbar的遮挡图片*/
-	public ImageView mBlackAlertCoverImage;
+	/**自定义Actionbar的右侧设置图片*/
+	public ImageView mActionBarSetting;
+
 	public Toolbar mToolbar;
 	/**自定义ActionBar左侧按键的Id*/
 	public final static int mCustomActionBarActionBackId = R.id.action_back_layout;
@@ -77,7 +78,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 		mActionBarBackText = mToolbar.findViewById(R.id.action_back_text);
 		mActionBarNextFlag = mToolbar.findViewById(R.id.action_next_flag);
 		mActionBarBackFlag = mToolbar.findViewById(R.id.action_back_flag);
-		mBlackAlertCoverImage = mToolbar.findViewById(R.id.black_alert_cover_image);
+		mActionBarSetting = mToolbar.findViewById(R.id.action_right_setting);
 		mActionBackLayout.setOnClickListener(this);
 		mActionBackLayout.setOnTouchListener(mOnTouchListener);
 		mActionNextLayout.setOnTouchListener(mOnTouchListener);
@@ -130,4 +131,23 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 	protected void setAbTitle(String title){
 		mActionBarTitle.setText(title);
 	}
+
+	protected void setAbBack(View.OnClickListener onClickListener){
+		mActionBackLayout.setVisibility(View.VISIBLE);
+		mActionBarBackText.setVisibility(View.INVISIBLE);
+		mActionBackLayout.setOnTouchListener(mOnTouchListener);
+		if(onClickListener != null){
+			mActionBackLayout.setOnClickListener(onClickListener);
+		}
+	}
+
+	protected void setAbSetting(View.OnClickListener onClickListener){
+		mActionBarSetting.setVisibility(View.VISIBLE);
+		mActionBarSetting.setOnTouchListener(mOnTouchListener);
+		if(onClickListener != null){
+			mActionBarSetting.setOnClickListener(onClickListener);
+		}
+	}
+
+
 }

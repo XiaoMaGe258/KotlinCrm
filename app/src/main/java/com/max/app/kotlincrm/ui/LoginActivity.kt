@@ -29,6 +29,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        mContext = this
         Sp.init_SP_Instance(this, JZBConstants.SP_USERINFO)
         val isLogin = Sp.get_Boolean(JZBConstants.TAG_ISLOGIN, false)
         if (isLogin) {
@@ -36,7 +37,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             this.finish()
             return
         }
-        mContext = this
         initView()
     }
 

@@ -1,5 +1,6 @@
 package com.max.app.kotlincrm
 
+import android.content.Intent
 import android.os.Bundle
 import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -12,6 +13,9 @@ import kotlinx.android.synthetic.main.activity_main_manager.*
 import java.util.ArrayList
 import android.support.v7.widget.GridLayoutManager
 import android.view.View
+import com.max.app.kotlincrm.ui.AddCustomerActivity
+import com.max.app.kotlincrm.ui.SettingActivity
+import com.max.app.kotlincrm.utils.MyToast
 
 
 /**
@@ -21,7 +25,7 @@ import android.view.View
 class MainManagerActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
 
     private val mGridViewList = ArrayList<GridViewItem>()
-//    var mAdapter = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_manager)
@@ -31,6 +35,10 @@ class MainManagerActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener
 
     private fun initActionbar(){
         setAbTitle("小劳易管CRM")
+        setAbSetting({
+            val intent = Intent(mContext, SettingActivity::class.java)
+            startActivity(intent)
+        })
     }
 
     private fun initView(){
@@ -66,7 +74,9 @@ class MainManagerActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener
 //            PayMoneyActivity.actionPayMoneyActivity(mContext)
             }
             "添加客户" -> {
-//            UnfamiliarVisitedActivity.actionUnfamiliarVisitedActivity(mContext, false)
+                val intent = Intent(mContext, AddCustomerActivity::class.java)
+//                intent.putExtra("url", mListItems[position].contentUrl)
+                startActivity(intent)
             }
         }
     }
@@ -78,11 +88,8 @@ class MainManagerActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener
         mGridViewList.add(GridViewItem("添加客户", R.drawable.ic_unfamiliar_visit))
     }
 
-    inner class GridViewItem
-    @JvmOverloads constructor(
-            internal var name: String,
-            internal var icon: Int
-    )
+    //这种写法，直接默认了主构造函数，并给参数直接赋值。
+    inner class GridViewItem constructor(val name: String, val icon: Int)
 
     inner class GridViewAdapter(layoutResId: Int, data: List<GridViewItem>) : BaseQuickAdapter<GridViewItem, BaseViewHolder>(layoutResId, data) {
 

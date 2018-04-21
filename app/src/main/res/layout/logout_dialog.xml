@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_bg">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/logout_dialog_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:lineSpacingExtra="4dp"
+            android:paddingBottom="40dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="40dp"
+            android:text="是否退出登录"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:id="@+id/money_dialog_container"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/logout_dialog_title"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/logout_dialog_cancle"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/dialog_left_button_bg"
+                android:text="取消"
+                android:textColor="@color/text_gray_light" />
+
+            <View
+                android:id="@+id/vertical_line"
+                android:layout_width="1dp"
+                android:layout_height="50dp"
+                android:background="#c9c9c9" />
+
+            <Button
+                android:id="@+id/logout_dialog_enter"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/dialog_right_button_bg"
+                android:text="确定"
+                android:textColor="#3cc2a7" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_above="@id/money_dialog_container"
+            android:layout_marginTop="20dp"
+            android:background="#c9c9c9" />
+    </RelativeLayout>
+</RelativeLayout>

@@ -62,20 +62,15 @@
         </RelativeLayout>
     </RelativeLayout>
 
-    <!--<GridView-->
-        <!--android:id="@+id/gv_grid"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:background="#dddddd"-->
-        <!--android:verticalSpacing="0.5dp"-->
-        <!--android:horizontalSpacing="0.5dp"-->
-        <!--android:paddingBottom="0.4dp"-->
-        <!--android:layout_below="@id/main_manager_top"-->
-        <!--android:numColumns="4" >-->
-    <!--</GridView>-->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/gv_grid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/main_manager_top"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/gv_grid"
+        android:background="@color/list_divider"/>
 </RelativeLayout>
