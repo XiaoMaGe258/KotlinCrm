@@ -84,6 +84,11 @@ public class JZBController {
         postOkHttp(url, params, responseHandler);
     }
 
+    //个人客户池列表
+    public void getPrivateLibraryList(int startIndex, int pageSize, StringCallback responseHandler){
+        String url=JZBConstants.API_IP+"/customers/self" +"?start_index="+startIndex+"&page_size="+pageSize;
+        getOkHttp(url,responseHandler);
+    }
 //-------------------------------------------------------------------------------------
 
     public void getOkHttp(String url, final StringCallback responseHandler) {

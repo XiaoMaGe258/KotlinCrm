@@ -22,11 +22,16 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation 'com.android.support:support-v4:26.1.0'
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support:recyclerview-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     implementation 'com.google.code.gson:gson:2.8.1'
     implementation 'com.lzy.net:okgo:3.0.4'//https://github.com/jeasonlzy/okhttp-OkGo
     implementation 'com.github.bumptech.glide:glide:3.8.0'
+    implementation 'com.google.code.gson:gson:2.8.1'
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34'//https://github.com/CymChad/BaseRecyclerViewAdapterHelper
+    implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'//https://github.com/H07000223/FlycoTabLayout
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'//https://github.com/scwang90/SmartRefreshLayout
 }

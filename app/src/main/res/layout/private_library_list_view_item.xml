@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:paddingTop="5dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="5dp"
+    android:background="@color/activity_bg_gray"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+<LinearLayout
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <!-- 私有资源 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="45dp">
+
+        <TextView
+            android:id="@+id/private_library_item_customer_date"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:minWidth="20dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:gravity="center"
+            android:background="@drawable/round_red_bg"
+            android:text="9"
+            android:textColor="@color/white"
+            />
+        <TextView
+            android:id="@+id/private_library_item_customer_source"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/private_library_item_customer_date"
+            android:layout_marginRight="5dp"
+            android:gravity="center"
+            android:background="@drawable/round_green_bg"
+            android:text="收集"
+            android:textColor="@color/white"
+            />
+        <TextView
+            android:id="@+id/private_library_item_customer_level"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:minWidth="20dp"
+            android:layout_centerVertical="true"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:layout_toLeftOf="@id/private_library_item_customer_source"
+            android:layout_marginRight="5dp"
+            android:gravity="center"
+            android:background="@drawable/round_blue_bg"
+            android:text="B"
+            android:textColor="@color/white"
+            />
+
+        <TextView
+            android:id="@+id/private_library_item_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/private_library_item_customer_level"
+            android:text="公司名字公司名字公司名字公司名字公司名字公名字"
+            android:singleLine="true"
+            android:textSize="16sp"
+            />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/private_library_item_follow_layout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        >
+
+        <View
+            android:background="@color/gray"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+        <RelativeLayout
+            android:id="@+id/private_library_item_call_layout"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            >
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="30dp"
+                android:background="@color/gray"
+                android:layout_centerVertical="true"
+                />
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_call"
+                android:layout_centerInParent="true"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/private_library_item_call_layout"
+            >
+            <View
+                android:id="@+id/private_library_item_center_flag"
+                android:layout_width="0.5dp"
+                android:layout_height="15dp"
+                android:layout_centerHorizontal="true"
+                android:background="@color/gray"
+                android:layout_marginTop="13dp"
+                />
+
+            <TextView
+                android:id="@+id/transaction_item_follow_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="10dp"
+                android:singleLine="true"
+                android:layout_toLeftOf="@id/private_library_item_center_flag"
+                android:text="电话跟进：李先生"
+                android:textColor="@color/salary_gray"
+                />
+
+            <TextView
+                android:id="@+id/private_library_item_follow_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/private_library_item_center_flag"
+                android:layout_marginLeft="20dp"
+                android:gravity="center_vertical"
+                android:text="2016-05-13"
+                android:textColor="@color/salary_gray" />
+
+            <TextView
+                android:id="@+id/private_library_item_follow_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/transaction_item_follow_name"
+                android:layout_marginTop="5dp"
+                android:text="我是信息信息我是信息啊信息信息信息信息信息"
+                android:singleLine="true"
+                android:textColor="@color/salary_gray"
+                />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/private_library_item_bd_layout"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content"
+        >
+
+        <View
+            android:background="@color/gray"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"/>
+
+        <TextView
+            android:id="@+id/private_library_item_bd_name"
+            android:text="所属销售：张三"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical" />
+
+        <TextView
+            android:id="@+id/private_library_item_cname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_below="@id/private_library_item_bd_name"
+            android:layout_marginTop="5dp"
+            android:text="创建人：张四" />
+
+        <TextView
+            android:id="@+id/private_library_item_ctime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_below="@id/private_library_item_cname"
+            android:layout_marginTop="5dp"
+            android:paddingBottom="10dp"
+            android:text="创建时间：2016-11-22" />
+    </RelativeLayout>
+</LinearLayout>
+</LinearLayout>

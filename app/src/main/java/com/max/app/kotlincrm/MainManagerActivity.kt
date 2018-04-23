@@ -14,6 +14,7 @@ import java.util.ArrayList
 import android.support.v7.widget.GridLayoutManager
 import android.view.View
 import com.max.app.kotlincrm.ui.AddCustomerActivity
+import com.max.app.kotlincrm.ui.PrivateLibraryActivity
 import com.max.app.kotlincrm.ui.SettingActivity
 import com.max.app.kotlincrm.utils.MyToast
 
@@ -64,7 +65,7 @@ class MainManagerActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener
     private fun handlerGridViewItemOnclick(name: String) {
         when(name){
             "个人客户池" -> {
-//            PrivateLibraryActivity.actionPrivateLibraryActivity(mContext)
+                PrivateLibraryActivity.actionActivity(mContext)
             }
             "公共客户池" -> {
 //            PublicLibraryActivity.actionPublicLibraryActivity(mContext)

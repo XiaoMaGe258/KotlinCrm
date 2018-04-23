@@ -126,10 +126,6 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 		JZBApplication.AllActivity.remove(this);
 	}
 
-	public boolean isNull(String str){
-		return TextUtils.isEmpty(str) || "null".equalsIgnoreCase(str);
-	}
-
 	protected void setAbTitle(String title){
 		mActionBarTitle.setText(title);
 	}

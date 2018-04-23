@@ -7,6 +7,7 @@ import com.max.app.kotlincrm.R
 import com.max.app.kotlincrm.api.JZBController
 import com.max.app.kotlincrm.api.JzbResponseHandler
 import com.max.app.kotlincrm.utils.MyToast
+import com.max.app.kotlincrm.utils.Utils
 import kotlinx.android.synthetic.main.activity_enterprise_info.*
 import org.json.JSONObject
 
@@ -63,10 +64,10 @@ class EnterpriseInfoActivity : BaseActivity() {
                 val city = json.optString("district")
                 val property = json.optString("property")
                 val about = json.optString("about")
-                tv_enterprise_name.text = if(isNull(name)) "未知" else name
-                tv_enterprise_city.text = if(isNull(city)) "未知" else city
-                tv_enterprise_property.text = if(isNull(property)) "未知" else property
-                tv_enterprise_introduce.text = if(isNull(about)) "未知" else about
+                tv_enterprise_name.text = if(Utils.isNull(name)) "未知" else name
+                tv_enterprise_city.text = if(Utils.isNull(city)) "未知" else city
+                tv_enterprise_property.text = if(Utils.isNull(property)) "未知" else property
+                tv_enterprise_introduce.text = if(Utils.isNull(about)) "未知" else about
             }
         })
     }
