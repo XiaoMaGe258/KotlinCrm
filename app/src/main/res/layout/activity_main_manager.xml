@@ -9,7 +9,7 @@
         android:id="@+id/main_manager_top"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="@color/app_default_green" >
+        android:background="@color/app_green" >
 
         <ImageView
             android:id="@+id/iv_user_logo"

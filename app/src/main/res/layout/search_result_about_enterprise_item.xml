@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:paddingTop="10dp"
+              android:paddingBottom="10dp"
+              android:background="@color/white">
+    
+    <RelativeLayout
+        android:id="@+id/search_result_about_enterprise_item_relative01"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/search_result_about_enterprise_item_enterprise_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="企业名称"
+            android:layout_centerVertical="true"
+            android:textSize="18sp"
+            android:maxWidth="200dp"
+            android:layout_marginLeft="15dp"/>
+
+        <ImageView
+            android:id="@+id/search_result_about_enterprise_item_enterprise_status"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:src="@drawable/locked_up"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/search_result_about_enterprise_item_enterprise_name"/>
+
+        <TextView
+            android:id="@+id/search_result_about_enterprise_item_enterprise_status2"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@id/search_result_about_enterprise_item_enterprise_name"
+            android:text="审核中"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:background="@drawable/round_purple_bg"
+            android:visibility="invisible"
+            />
+
+        <ImageView
+            android:id="@+id/search_result_about_enterprise_item_enterprise_detail"
+            android:layout_width="25dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/flag_right"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/search_result_about_enterprise_item_enterprise_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="15dp"
+        android:singleLine="true"
+        android:text="2016-05-12 13:33"
+        android:textColor="@color/salary_gray"
+        android:layout_below="@id/search_result_about_enterprise_item_relative01"/>
+
+</RelativeLayout>

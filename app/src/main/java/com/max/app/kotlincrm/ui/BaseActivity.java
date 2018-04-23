@@ -49,9 +49,6 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 	/**自定义ActionBar右侧按键的Id*/
 	public final static int mCustomActionBarActionNextId = R.id.action_next_layout;
 	
-	/**默认顶部系统栏的颜色*/
-	private final int DEFAULT_SYSTEM_BAR_COLOR = R.color.app_default_green;
-
 	//ToolBar下方，页面内容
 	private LinearLayout mContentView;
 	@Override
@@ -148,6 +145,5 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 			mActionBarSetting.setOnClickListener(onClickListener);
 		}
 	}
-
 
 }

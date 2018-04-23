@@ -33,4 +33,10 @@ public class JZBConstants {
 	public static final String ROLENAME 				= "roleName";
 	//角色roleNumber
 	public static final String ROLENUMBER 				= "roleNumber";
+	//定位经度
+	public static final String BD_LONGITUDE 			= "bd_longitude";
+	//定位纬度
+	public static final String BD_LATITUDE 				= "bd_latitude";
+	//定位地址
+	public static final String BD_ADDRESS 				= "bd_address";
 }

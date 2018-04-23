@@ -10,6 +10,9 @@ import android.os.Looper;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.BitmapCallback;
 import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.cookie.CookieJarImpl;
+import com.lzy.okgo.cookie.store.DBCookieStore;
+import com.lzy.okgo.cookie.store.SPCookieStore;
 import com.lzy.okgo.model.Response;
 import com.max.app.kotlincrm.ui.LoginActivity;
 import com.max.app.kotlincrm.utils.L;
@@ -21,6 +24,8 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+
+import okhttp3.OkHttpClient;
 
 public class JZBController {
 
@@ -59,6 +64,17 @@ public class JZBController {
         postOkHttp(url, params, responseHandler);
     }
 
+    /**
+     * 企业查重(销售申请签约客户)
+     * @param customerName
+     * @param responseHandler
+     */
+    public void requestEnterpriseInformation(String customerName, StringCallback responseHandler){
+        String url=JZBConstants.API_IP+"/customers/dupchecking?customer_name="+customerName;
+        L.d("xmg","url"+url);
+        getOkHttp(url,responseHandler);
+    }
+
 
 
     public void getOkHttp(String url, final StringCallback responseHandler) {
@@ -72,6 +88,7 @@ public class JZBController {
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(Response<String> response) {
+                        L.d("xmg", "callback  body=" + response.body());
                         responseHandler.onSuccess(response);
                     }
 

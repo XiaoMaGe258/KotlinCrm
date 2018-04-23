@@ -20,8 +20,6 @@ import org.json.JSONObject;
  */
 public abstract class JzbResponseHandler extends StringCallback {
 
-    private static final String TAG = "json";
-
     private Activity mActivity;
 
     private String mHintMsg;
@@ -80,7 +78,7 @@ public abstract class JzbResponseHandler extends StringCallback {
     public void onSuccess(Response<String> response) {
         hideProgressDialog();
         String responseBody = response.body();
-        L.d(TAG, responseBody);
+//        L.d(TAG, responseBody);
         try {
             JSONObject jsonObject = new JSONObject(responseBody);
             if ("ok".equals(jsonObject.optString("status"))
@@ -93,7 +91,7 @@ public abstract class JzbResponseHandler extends StringCallback {
                 }
             }
         } catch (Exception e) {
-            L.e(TAG, "解析失败");
+            L.me("解析失败");
             e.printStackTrace();
             onHttpFailure(response.code(), "解析失败");
         }
@@ -114,9 +112,9 @@ public abstract class JzbResponseHandler extends StringCallback {
             if (mActivity != null) {
                 MyToast.showToast(mActivity, "加载失败，请稍后重试");
             }
-            L.e(TAG, "网络请求失败");
+            L.me("网络请求失败");
             if (responseBody.length() > 0) {
-                L.e(TAG, "错误码" + response.code() + " responseBody=" + responseBody.toString());
+                L.me("错误码" + response.code() + " responseBody=" + responseBody.toString());
                 onHttpFailure(response.code(), responseBody);
             }
         }else{

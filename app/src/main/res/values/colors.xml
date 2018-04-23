@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/app_default_green</color>
-    <color name="colorPrimaryDark">@color/app_default_green</color>
+    <color name="colorPrimary">@color/app_green</color>
+    <color name="colorPrimaryDark">@color/app_green</color>
     <color name="colorAccent">#FF4081</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
@@ -13,7 +13,7 @@
     <color name="salary_gray">#b2b2b2</color>
     <color name="transparent">#00000000</color>
     <color name="province_line_border">#C7C7C7</color>
-    <color name="app_default_green">#3ac1a7</color>
+    <color name="app_green">#3ac1a7</color>
     <color name="list_item_bg_normal">@color/white</color>
     <color name="list_item_bg_checked">@color/gray</color>
     <color name="list_item_bg_pressed">@color/gray</color>

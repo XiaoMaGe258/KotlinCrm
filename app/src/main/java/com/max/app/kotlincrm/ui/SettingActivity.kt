@@ -6,7 +6,9 @@ import android.view.Gravity
 import android.widget.Button
 import com.max.app.kotlincrm.JZBApplication
 import com.max.app.kotlincrm.R
+import com.max.app.kotlincrm.api.JZBConstants
 import com.max.app.kotlincrm.utils.MyToast
+import com.max.app.kotlincrm.utils.Sp
 import kotlinx.android.synthetic.main.activity_settting.*
 
 /**
@@ -49,6 +51,8 @@ class SettingActivity : BaseActivity() {
         val cancel = dialog.findViewById(R.id.logout_dialog_cancle) as Button
         enter.setOnClickListener {
             JZBApplication.recycleAllActivity()
+            Sp.init_SP_Instance(this, JZBConstants.SP_USERINFO)
+            Sp.put_Boolean(JZBConstants.TAG_ISLOGIN, true)
             mContext.finish()
         }
         cancel.setOnClickListener { dialog.dismiss() }
