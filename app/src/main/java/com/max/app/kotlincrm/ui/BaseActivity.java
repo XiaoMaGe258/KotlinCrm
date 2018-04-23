@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -125,10 +126,25 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 		JZBApplication.AllActivity.remove(this);
 	}
 
+	public boolean isNull(String str){
+		return TextUtils.isEmpty(str) || "null".equalsIgnoreCase(str);
+	}
+
 	protected void setAbTitle(String title){
 		mActionBarTitle.setText(title);
 	}
 
+	protected void showAbBack(){
+		mActionBackLayout.setVisibility(View.VISIBLE);
+		mActionBarBackText.setVisibility(View.INVISIBLE);
+		mActionBackLayout.setOnTouchListener(mOnTouchListener);
+		mActionBackLayout.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				finish();
+			}
+		});
+	}
 	protected void setAbBack(View.OnClickListener onClickListener){
 		mActionBackLayout.setVisibility(View.VISIBLE);
 		mActionBarBackText.setVisibility(View.INVISIBLE);

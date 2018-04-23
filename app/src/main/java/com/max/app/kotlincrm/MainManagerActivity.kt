@@ -36,8 +36,7 @@ class MainManagerActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener
     private fun initActionbar(){
         setAbTitle("小劳易管CRM")
         setAbSetting({
-            val intent = Intent(mContext, SettingActivity::class.java)
-            startActivity(intent)
+            SettingActivity.actionActivity(mContext)
         })
     }
 
@@ -74,9 +73,7 @@ class MainManagerActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener
 //            PayMoneyActivity.actionPayMoneyActivity(mContext)
             }
             "添加客户" -> {
-                val intent = Intent(mContext, AddCustomerActivity::class.java)
-//                intent.putExtra("url", mListItems[position].contentUrl)
-                startActivity(intent)
+                AddCustomerActivity.actionActivity(mContext)
             }
         }
     }

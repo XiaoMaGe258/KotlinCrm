@@ -11,6 +11,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.TextView
 import com.max.app.kotlincrm.R
@@ -27,10 +28,17 @@ import java.util.*
  * 添加客户
  * Created by Xmg on 2018-4-21.
  */
-class AddCustomerActivity : BaseActivity() {
+class AddCustomerActivity : BaseActivity(), AdapterView.OnItemClickListener {
 
     private val mSearchResultInformations = ArrayList<SearchResultInformation>()
     private var mSearchResultAdapter: SearchResultAdapter? = null
+
+    companion object {
+        fun actionActivity(context: Activity) {
+            val intent = Intent(context, AddCustomerActivity::class.java)
+            context.startActivity(intent)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,15 +49,13 @@ class AddCustomerActivity : BaseActivity() {
 
     private fun initActionbar(){
         setAbTitle("添加客户")
-        setAbBack({
-            finish()
-        })
+        showAbBack()
     }
 
     private fun initView(){
         mSearchResultAdapter = SearchResultAdapter(mContext, mSearchResultInformations)
         lv_customer_list.adapter = mSearchResultAdapter
-
+        lv_customer_list.onItemClickListener = this
         et_search_text.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
             }
@@ -60,20 +66,40 @@ class AddCustomerActivity : BaseActivity() {
                 demandSearchResult()
             }
         })
+        iv_clear_search.setOnClickListener {
+            //清楚搜索框中的内容
+            et_search_text.text = null
+            lv_customer_list.visibility = View.GONE
+        }
     }
-    private var mEnterpriseName: String? = ""
+
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        val searchResultInformation = parent!!.getItemAtPosition(position) as SearchResultInformation
+        val enterpriseStatus = searchResultInformation.enterpriseStatus
+        val teamPublicSea = 1
+        val publicSea = 4
+        if (enterpriseStatus == publicSea || enterpriseStatus == teamPublicSea) {
+            if (mSearchResultInformations.size == 0) {
+                return
+            }
+
+            EnterpriseInfoActivity.actionActivity(mContext,
+                    mSearchResultInformations[position].customerId!!, enterpriseStatus)
+        }
+    }
+
     //查询搜索结果
     private fun demandSearchResult() {
-        mEnterpriseName = et_search_text.text.toString()
+        val mEnterpriseName = et_search_text.text.toString()
         if ("" == mEnterpriseName) {
             lv_customer_list.visibility = View.GONE
             return
         }
-        requestEnterpriseFromServer(mEnterpriseName!!)
+        requestEnterpriseFromServer(mEnterpriseName)
     }
 
     private fun requestEnterpriseFromServer(enterpriseName: String) {
-        JZBController.getInstance(mContext).requestEnterpriseInformation(enterpriseName,
+        JZBController.getInstance(mContext).getEnterpriseDupcheck(enterpriseName,
                 object : JzbResponseHandler() {
             override fun onHttpSuccessStatusOk(data: JSONObject?) {
                 try {

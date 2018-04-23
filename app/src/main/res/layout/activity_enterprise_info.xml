@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray">
+
+
+    <RelativeLayout
+        android:id="@+id/activity_enterprise_detail_relative"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/activity_enterprise_detail_enterprise_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:text="企业名称："
+            android:textColor="@color/salary_gray"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_enterprise_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/activity_enterprise_detail_enterprise_name"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@id/activity_enterprise_detail_enterprise_name"
+            android:singleLine="true"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/activity_enterprise_detail_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/activity_enterprise_detail_enterprise_name"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:text="所在城市："
+            android:textColor="@color/salary_gray"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_enterprise_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/activity_enterprise_detail_city"
+            android:layout_below="@id/tv_enterprise_name"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@id/activity_enterprise_detail_city"
+            android:singleLine="true"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/activity_enterprise_detail_enterprise_property"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/activity_enterprise_detail_city"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:text="企业性质："
+            android:textColor="@color/salary_gray"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_enterprise_property"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/activity_enterprise_detail_enterprise_property"
+            android:layout_below="@id/tv_enterprise_city"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@id/activity_enterprise_detail_enterprise_property"
+            android:singleLine="true"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/activity_enterprise_detail_enterprise_introduce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/activity_enterprise_detail_enterprise_property"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:text="企业介绍："
+            android:textColor="@color/salary_gray"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_enterprise_introduce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/activity_enterprise_detail_enterprise_introduce"
+            android:layout_below="@id/tv_enterprise_property"
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@id/activity_enterprise_detail_enterprise_introduce"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_pickup"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@id/activity_enterprise_detail_relative"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/button_round_green"
+        android:text="申请捡回"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+</RelativeLayout>

@@ -64,18 +64,27 @@ public class JZBController {
         postOkHttp(url, params, responseHandler);
     }
 
-    /**
-     * 企业查重(销售申请签约客户)
-     * @param customerName
-     * @param responseHandler
-     */
-    public void requestEnterpriseInformation(String customerName, StringCallback responseHandler){
+    //企业查重(销售申请签约客户)
+    public void getEnterpriseDupcheck(String customerName, StringCallback responseHandler){
         String url=JZBConstants.API_IP+"/customers/dupchecking?customer_name="+customerName;
-        L.d("xmg","url"+url);
         getOkHttp(url,responseHandler);
     }
 
+    //企业信息
+    public void getEnterpriseInfo(String customerId, StringCallback responseHandler){
+        String url=JZBConstants.API_IP+"/customers/"+customerId;
+        getOkHttp(url,responseHandler);
+    }
 
+    //捡回企业
+    public void postPickupEnterprise(String customerId, StringCallback responseHandler){
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("customer_id", customerId);
+        String url=JZBConstants.API_IP+"/customers/pickup";
+        postOkHttp(url, params, responseHandler);
+    }
+
+//-------------------------------------------------------------------------------------
 
     public void getOkHttp(String url, final StringCallback responseHandler) {
         L.d("xmg", "HttpGetRequest  url=" + url);

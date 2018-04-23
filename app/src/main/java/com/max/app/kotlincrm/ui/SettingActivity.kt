@@ -1,6 +1,8 @@
 package com.max.app.kotlincrm.ui
 
+import android.app.Activity
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
 import android.widget.Button
@@ -17,6 +19,13 @@ import kotlinx.android.synthetic.main.activity_settting.*
  */
 class SettingActivity : BaseActivity() {
 
+    companion object {
+        fun actionActivity(context: Activity) {
+            val intent = Intent(context, SettingActivity::class.java)
+            context.startActivity(intent)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settting)
@@ -27,9 +36,7 @@ class SettingActivity : BaseActivity() {
 
     private fun initActionbar(){
         setAbTitle("设置")
-        setAbBack({
-            finish()
-        })
+        showAbBack()
     }
 
     private fun initView(){
