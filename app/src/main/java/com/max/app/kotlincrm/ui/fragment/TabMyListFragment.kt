@@ -22,8 +22,10 @@ import com.chad.library.adapter.base.BaseViewHolder
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.max.app.kotlincrm.R
+import com.max.app.kotlincrm.api.JZBConstants
 import com.max.app.kotlincrm.api.JZBController
 import com.max.app.kotlincrm.api.JzbResponseHandler
+import com.max.app.kotlincrm.ui.EnterpriseDetailActivity
 import com.max.app.kotlincrm.utils.L
 import com.max.app.kotlincrm.utils.Utils
 import com.scwang.smartrefresh.header.MaterialHeader
@@ -37,6 +39,10 @@ import kotlinx.android.synthetic.main.fragment_tab_list.view.*
 import org.json.JSONObject
 import java.util.*
 
+/**
+ * 我的客户
+ * Created by Xmg on 2018-4-23.
+ */
 class TabMyListFragment: Fragment(), OnRefreshListener, OnLoadmoreListener, View.OnClickListener, TextWatcher {
 
     private var mPull2RefreshLayout: SmartRefreshLayout? = null
@@ -168,7 +174,8 @@ class TabMyListFragment: Fragment(), OnRefreshListener, OnLoadmoreListener, View
             item.applyTryout -> flag = "已申请试用"
             item.tryouted -> flag = "已试用"
         }
-
+        EnterpriseDetailActivity.actionActivity(activity, item.name, item.levelDec, flag,
+                item.customerId, true, JZBConstants.PRIVATE_LIBRARY)
     }
 
     inner class LibraryAdapter(layoutResId: Int, data: List<PrivateLibraryListItem>) :

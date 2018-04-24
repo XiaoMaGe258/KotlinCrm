@@ -14,7 +14,7 @@
         tl:tl_textSelectColor="@color/app_green"
         tl:tl_textUnselectColor="@color/text_gray_light"
         tl:tl_tab_space_equal="true"
-        tl:tl_textBold="SELECT"
+        tl:tl_textBold="NONE"
         tl:tl_textsize="16sp"
         tl:tl_indicator_height="2dp"
         tl:tl_indicator_color="@color/app_green"

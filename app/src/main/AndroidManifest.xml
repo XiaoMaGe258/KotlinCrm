@@ -49,6 +49,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.PrivateLibraryActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".ui.EnterpriseDetailActivity"
+            android:screenOrientation="portrait"/>
 
         <!-- ################### 百度地图 ################## -->
         <meta-data

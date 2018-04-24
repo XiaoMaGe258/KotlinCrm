@@ -39,4 +39,10 @@ public class JZBConstants {
 	public static final String BD_LATITUDE 				= "bd_latitude";
 	//定位地址
 	public static final String BD_ADDRESS 				= "bd_address";
+
+
+	//个人客户池
+	public static final int PRIVATE_LIBRARY 			= 700;
+	//公共客户池
+	public static final int PUBLIC_LIBRARY 				= 701;
 }
