@@ -119,6 +119,23 @@ public class JZBController {
         }
         getOkHttp(url,responseHandler);
     }
+
+    //跟进记录
+    public void getFollowLogs(String customerId, int startIndex, int pageSize, StringCallback responseHandler){
+        String url=JZBConstants.API_IP+"/followuplogs?start_index=" + startIndex
+                + "&page_size=" + pageSize + "&customer_id=" + customerId;
+        getOkHttp(url,responseHandler);
+    }
+
+    //离访
+    public void postLeaveFollowup(String followupId, StringCallback responseHandler){
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("followup_id", followupId);
+        String url=JZBConstants.API_IP+"/api/app/customer/followup/finish";
+        postOkHttp(url, params, responseHandler);
+    }
+
+
 //-------------------------------------------------------------------------------------
 
     public void getOkHttp(String url, final StringCallback responseHandler) {

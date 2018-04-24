@@ -17,7 +17,7 @@ import com.max.app.kotlincrm.R;
 
 /**
  *
- * <style name="Dialog_Fullscreen1">
+ * <style name="Dialog_Fullscreen">
 	 <item name="android:windowNoTitle">true</item>
 	 <item name="android:windowFrame">@null</item>
 	 <item name="android:windowIsFloating">true</item>

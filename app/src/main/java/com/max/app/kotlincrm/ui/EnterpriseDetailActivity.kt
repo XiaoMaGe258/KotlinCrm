@@ -88,6 +88,12 @@ class EnterpriseDetailActivity : BaseActivity() {
         tl_sliding_tab.setViewPager(vp_tab_item_pager)
     }
 
+    fun getCId(): String {
+        return customerId
+    }
+    fun getFrom() : Int{
+        return fromPage
+    }
     private inner class MyPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
         override fun getItem(position: Int): Fragment {
