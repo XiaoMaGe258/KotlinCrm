@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.TextUtils;
 
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.BitmapCallback;
@@ -85,8 +86,18 @@ public class JZBController {
     }
 
     //个人客户池列表
-    public void getPrivateLibraryList(int startIndex, int pageSize, StringCallback responseHandler){
+    public void getPrivateLibraryList(String level, String order, String keyword,
+                                      int startIndex, int pageSize, StringCallback responseHandler){
         String url=JZBConstants.API_IP+"/customers/self" +"?start_index="+startIndex+"&page_size="+pageSize;
+        if(!TextUtils.isEmpty(level)){
+            url = url + "&level=" + level;
+        }
+        if(!TextUtils.isEmpty(order)){
+            url = url + "&order=" + order;
+        }
+        if(!TextUtils.isEmpty(keyword)){
+            url = url + "&key_word=" + keyword;
+        }
         getOkHttp(url,responseHandler);
     }
 //-------------------------------------------------------------------------------------
