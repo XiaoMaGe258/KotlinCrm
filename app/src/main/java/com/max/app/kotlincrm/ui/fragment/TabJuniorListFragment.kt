@@ -37,7 +37,7 @@ import kotlinx.android.synthetic.main.fragment_tab_list.view.*
 import org.json.JSONObject
 import java.util.*
 
-class TabMyListFragment: Fragment(), OnRefreshListener, OnLoadmoreListener, View.OnClickListener, TextWatcher {
+class TabJuniorListFragment: Fragment(), OnRefreshListener, OnLoadmoreListener, View.OnClickListener, TextWatcher {
 
     private var mPull2RefreshLayout: SmartRefreshLayout? = null
     private val mItems = ArrayList<PrivateLibraryListItem>()
@@ -94,6 +94,7 @@ class TabMyListFragment: Fragment(), OnRefreshListener, OnLoadmoreListener, View
         v.rv_option.adapter = mFilterAdapter
         v.ll_filter_customer.setOnClickListener(this)
         v.ll_filter_order.setOnClickListener(this)
+        v.ll_filter_bd.visibility = View.VISIBLE
         v.ll_filter_bd.setOnClickListener(this)
         v.v_shade_view.setOnClickListener(this)
         v.iv_clear_search.setOnClickListener(this)
@@ -132,7 +133,7 @@ class TabMyListFragment: Fragment(), OnRefreshListener, OnLoadmoreListener, View
     }
 
     private fun getData(isRefreshing: Boolean) {
-        JZBController.getInstance(activity).getPrivateLibraryList(mFilterLevel, mFilterOrder, mFilterKeyWord,
+        JZBController.getInstance(activity).getJuniorLibraryList(mFilterLevel, mFilterOrder, mFilterBd, mFilterKeyWord,
                 mStartIndex * mPageSize, mPageSize, object : JzbResponseHandler(activity){
             override fun onHttpSuccessStatusOk(jsonObject: JSONObject?) {
                 if (isRefreshing) {
@@ -158,10 +159,9 @@ class TabMyListFragment: Fragment(), OnRefreshListener, OnLoadmoreListener, View
     override fun onRefresh(refreshlayout: RefreshLayout?) {
         getData(true)
     }
-
     private var mOnLibraryItemClickListener = BaseQuickAdapter.OnItemClickListener {
         adapter: BaseQuickAdapter<Any, BaseViewHolder>, view: View, position: Int ->
-        val item = adapter.getItem(position) as PrivateLibraryListItem
+        val item = adapter.getItem(position) as TabMyListFragment.PrivateLibraryListItem
         var flag = ""
         when {
             item.applyContact -> flag = "已申请签约"
@@ -170,7 +170,6 @@ class TabMyListFragment: Fragment(), OnRefreshListener, OnLoadmoreListener, View
         }
 
     }
-
     inner class LibraryAdapter(layoutResId: Int, data: List<PrivateLibraryListItem>) :
             BaseQuickAdapter<PrivateLibraryListItem, BaseViewHolder>(layoutResId, data) {
 
@@ -189,7 +188,10 @@ class TabMyListFragment: Fragment(), OnRefreshListener, OnLoadmoreListener, View
             holder.setText(R.id.private_library_item_follow_date, if (Utils.isNull(item.followupDate)) "" else item.followupDate)
             holder.setText(R.id.private_library_item_follow_content, if (Utils.isNull(item.followupContent)) "" else item.followupContent)
 
-            holder.setGone(R.id.private_library_item_bd_layout, false)
+            holder.setGone(R.id.private_library_item_bd_layout, true)
+            holder.setText(R.id.tv_bd_name, "所属销售：${item.bdName}")
+            holder.setText(R.id.tv_bd_cn, "创建人：${if (Utils.isNull(item.creatorName)) "-" else item.creatorName}")
+            holder.setText(R.id.tv_bd_ct, "创建时间：${item.ct}")
 
             //如果跟进信息都是空的，就隐藏跟进区域
             if (Utils.isNull(item.followupObject) && Utils.isNull(item.followupDate)
@@ -232,6 +234,7 @@ class TabMyListFragment: Fragment(), OnRefreshListener, OnLoadmoreListener, View
     private var mOnFilterItemClickListener = BaseQuickAdapter.OnItemClickListener {
         adapter: BaseQuickAdapter<Any, BaseViewHolder>, view: View, position: Int ->
         val item = adapter.getItem(position) as ChooseItem
+        L.md("select name: ${item.itemName}")
         when(mCurTopListIndex){
             0 -> {
                 //全类客户

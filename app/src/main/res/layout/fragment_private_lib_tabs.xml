@@ -12,7 +12,7 @@
         android:layout_height="48dp"
         android:background="@color/white"
         tl:tl_textSelectColor="@color/app_green"
-        tl:tl_textUnselectColor="@color/text_gray_normal"
+        tl:tl_textUnselectColor="@color/text_gray_light"
         tl:tl_tab_space_equal="true"
         tl:tl_textBold="SELECT"
         tl:tl_textsize="16sp"

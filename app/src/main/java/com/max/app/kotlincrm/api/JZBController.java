@@ -100,6 +100,25 @@ public class JZBController {
         }
         getOkHttp(url,responseHandler);
     }
+
+    //个人下级客户池列表
+    public void getJuniorLibraryList(String level, String order, String bdId, String keyword,
+                                      int startIndex, int pageSize, StringCallback responseHandler){
+        String url=JZBConstants.API_IP+"/customers/self/subofficer" +"?start_index="+startIndex+"&page_size="+pageSize;
+        if(!TextUtils.isEmpty(level)){
+            url = url + "&level=" + level;
+        }
+        if(!TextUtils.isEmpty(order)){
+            url = url + "&order=" + order;
+        }
+        if(!TextUtils.isEmpty(bdId)){
+            url = url + "&staff_id=" + bdId;
+        }
+        if(!TextUtils.isEmpty(keyword)){
+            url = url + "&key_word=" + keyword;
+        }
+        getOkHttp(url,responseHandler);
+    }
 //-------------------------------------------------------------------------------------
 
     public void getOkHttp(String url, final StringCallback responseHandler) {

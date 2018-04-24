@@ -7,7 +7,8 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import com.max.app.kotlincrm.R
-import com.max.app.kotlincrm.ui.fragment.TabListFragment
+import com.max.app.kotlincrm.ui.fragment.TabJuniorListFragment
+import com.max.app.kotlincrm.ui.fragment.TabMyListFragment
 import kotlinx.android.synthetic.main.fragment_private_lib_tabs.*
 import java.util.ArrayList
 
@@ -31,13 +32,18 @@ class PrivateLibraryActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_private_lib_tabs)
+        initActionbar()
         initView()
     }
 
+    private fun initActionbar(){
+        setAbTitle("个人客户池")
+        showAbBack()
+    }
+
     private fun initView(){
-        for (tab in mTabs) {
-            mFragments.add(TabListFragment())
-        }
+        mFragments.add(TabMyListFragment())
+        mFragments.add(TabJuniorListFragment())
 
         vp_tab_item_pager.adapter = MyPagerAdapter(supportFragmentManager)
         tl_sliding_tab.setViewPager(vp_tab_item_pager)
