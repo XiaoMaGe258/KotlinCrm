@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/user_info_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="#dedede" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/white">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#dddddd" />
+
+                <TextView
+                    android:id="@+id/follow_up_enterprise_name_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:text="企业名称"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_enterprise_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="30dp"
+                    android:gravity="right"
+                    android:layout_toRightOf="@id/follow_up_enterprise_name_text"
+                    android:background="@null"
+                    android:singleLine="true"
+                    android:text="企业名称"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_follow_object_layout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/white">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#dddddd" />
+
+                <TextView
+                    android:id="@+id/follow_up_object_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:text="跟进对象"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/right_flag"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignBottom="@id/follow_up_object_text"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignTop="@id/follow_up_object_text"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/flag_right" />
+
+                <TextView
+                    android:id="@+id/tv_follow_object"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="30dp"
+                    android:layout_toRightOf="@id/follow_up_object_text"
+                    android:gravity="right"
+                    android:hint="请选择"
+                    android:text=""
+                    android:textSize="16sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/follow_up_type_layout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/white">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#dddddd" />
+
+                <TextView
+                    android:id="@+id/follow_up_type_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:text="跟进方式"
+                    android:textSize="16sp" />
+
+                <RadioGroup
+                    android:id="@+id/vg_follow_method"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="30dp"
+                    android:background="#FFFFFF"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/follow_up_type_wechat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@drawable/check_box_select_bg"
+                        android:checked="true"
+                        android:text="  微信" />
+
+                    <RadioButton
+                        android:id="@+id/follow_up_type_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:button="@drawable/check_box_select_bg"
+                        android:checked="true"
+                        android:text="  电话" />
+
+                    <RadioButton
+                        android:id="@+id/follow_up_type_visit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:button="@drawable/check_box_select_bg"
+                        android:text="  拜访" />
+                </RadioGroup>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/follow_up_communication_layout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/white">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#dddddd" />
+
+                <TextView
+                    android:id="@+id/follow_up_communication_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:text="沟通分类"
+                    android:textSize="16sp" />
+
+                <RadioGroup
+                    android:id="@+id/vg_follow_communication"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="30dp"
+                    android:background="#FFFFFF"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/follow_up_communication_out"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:button="@drawable/check_box_select_bg"
+                        android:text="  主动回访" />
+
+                    <RadioButton
+                        android:id="@+id/follow_up_communication_in"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:button="@drawable/check_box_select_bg"
+                        android:text="  客户呼入" />
+                </RadioGroup>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/follow_up_tag_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingTop="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/follow_up_tag_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20dp"
+                        android:text="内容标签"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/follow_up_tag_sub_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5dp"
+                        android:text="可多选"
+                        android:textColor="@color/text_gray_light"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <!--<com.jianzhibao.crm.mobile.view.MyGridView-->
+                    <!--android:id="@+id/tag_gridview_layout"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:horizontalSpacing="15dp"-->
+                    <!--android:numColumns="3"-->
+                    <!--android:padding="15dp"-->
+                    <!--android:verticalSpacing="10dp" />-->
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#dddddd" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:minHeight="70dp"
+                android:paddingBottom="15dp"
+                android:paddingTop="15dp">
+
+                <TextView
+                    android:id="@+id/follow_up_content_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="跟进内容"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/follow_up_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_toRightOf="@id/follow_up_content_text"
+                    android:background="@null"
+                    android:gravity="top"
+                    android:hint="请输入"
+                    android:minHeight="70dp"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_alignParentBottom="true"
+                android:background="#dddddd" />
+
+            <RelativeLayout
+                android:id="@+id/follow_up_location_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:paddingBottom="15dp"
+                android:paddingRight="10dp"
+                android:paddingTop="15dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/location_icon"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="2dp"
+                    android:src="@drawable/ic_location" />
+
+                <TextView
+                    android:id="@+id/follow_up_location_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/location_icon"
+                    android:text="获取企业位置失败"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:id="@+id/follow_up_time_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/follow_up_location_name"
+                    android:layout_below="@id/follow_up_location_name"
+                    android:layout_marginTop="7dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/follow_up_start_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="到访时间：2016-05-29 12:15:33"
+                        android:textColor="@color/salary_gray"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/follow_up_end_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="离访时间：空"
+                        android:textColor="@color/salary_gray"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/follow_up_btn_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/follow_up_location_name"
+                    android:layout_below="@id/follow_up_location_name"
+                    android:layout_marginTop="10dp"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/follow_up_location_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button_stock_round_green"
+                        android:padding="5dp"
+                        android:text="重新定位"
+                        android:textColor="@color/app_green" />
+
+                    <TextView
+                        android:id="@+id/follow_up_sign_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/follow_up_location_btn"
+                        android:background="@drawable/button_stock_round_green"
+                        android:padding="5dp"
+                        android:text="到访拍照"
+                        android:textColor="@color/app_green" />
+
+                    <RelativeLayout
+                        android:id="@+id/follow_up_look_image_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="5dp"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/follow_up_look_image_flag"
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
+                            android:layout_centerVertical="true"
+                            android:paddingBottom="5dp"
+                            android:paddingTop="5dp"
+                            android:src="@drawable/ic_followup_image_flag" />
+
+                        <TextView
+                            android:id="@+id/follow_up_look_image_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/follow_up_look_image_flag"
+                            android:paddingBottom="5dp"
+                            android:paddingTop="5dp"
+                            android:text="点击查看"
+                            android:textColor="@color/app_green" />
+                    </RelativeLayout>
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/follow_up_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:background="@drawable/round_green_bg"
+                    android:text="确定"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

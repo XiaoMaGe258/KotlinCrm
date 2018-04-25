@@ -46,14 +46,9 @@ class TabEnterpriseFollow : Fragment(), OnRefreshListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.fragment_tab_enterprise_follow, null)
         mPull2RefreshLayout = v.pull_2_refresh_layout
-        initActionbar()
         initView(v)
         getData()
         return v
-    }
-
-    private fun initActionbar() {
-
     }
 
     private fun initView(v: View) {

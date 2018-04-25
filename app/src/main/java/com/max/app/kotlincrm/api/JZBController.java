@@ -131,8 +131,14 @@ public class JZBController {
     public void postLeaveFollowup(String followupId, StringCallback responseHandler){
         HashMap<String, Object> params = new HashMap<>();
         params.put("followup_id", followupId);
-        String url=JZBConstants.API_IP+"/api/app/customer/followup/finish";
+        String url=JZBConstants.API_IP + "/api/app/customer/followup/finish";
         postOkHttp(url, params, responseHandler);
+    }
+
+    //跟进对象
+    public void getFollowObject(String customerId, StringCallback responseHandler){
+        String url=JZBConstants.API_IP + "/contacts?customer_id=" + customerId;
+        getOkHttp(url,responseHandler);
     }
 
 

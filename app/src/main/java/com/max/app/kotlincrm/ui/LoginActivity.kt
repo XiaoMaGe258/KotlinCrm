@@ -89,14 +89,14 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                     val data = jsonObject!!.getJSONObject("data")
                     val trueName = data.optString(JZBConstants.TRUENAME)
                     val roleName = data.optString(JZBConstants.ROLENAME)
-                    val roleNumber = data.optString(JZBConstants.ROLENUMBER)
+                    val roleNumber = data.optInt(JZBConstants.ROLENUMBER)
                     val avatar = data.optString(JZBConstants.AVATAR)
                     L.md("trueName=$trueName  roleName=$roleName  roleNumber=$roleNumber")
                     Sp.init_SP_Instance(mContext, JZBConstants.SP_USERINFO)
                     Sp.put_String(JZBConstants.TRUENAME, trueName)
                     Sp.put_String(JZBConstants.ROLENAME, roleName)
                     Sp.put_String(JZBConstants.AVATAR, avatar)
-                    Sp.put_String(JZBConstants.ROLENUMBER, roleNumber)
+                    Sp.put_Int(JZBConstants.ROLENUMBER, roleNumber)
                     Sp.put_Boolean(JZBConstants.TAG_ISLOGIN, true)
                     //记住用户名密码
                     if(cb_remember_password.isChecked){

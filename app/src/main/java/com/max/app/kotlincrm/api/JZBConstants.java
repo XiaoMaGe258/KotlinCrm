@@ -32,7 +32,7 @@ public class JZBConstants {
 	//当前登录的用户的角色
 	public static final String ROLENAME 				= "roleName";
 	//角色roleNumber
-	public static final String ROLENUMBER 				= "roleNumber";
+	public static final String ROLENUMBER 				= "roleNum";
 	//定位经度
 	public static final String BD_LONGITUDE 			= "bd_longitude";
 	//定位纬度

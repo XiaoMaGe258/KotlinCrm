@@ -51,6 +51,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.EnterpriseDetailActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".ui.FollowUpActivity"
+            android:screenOrientation="portrait"/>
 
         <!-- ################### 百度地图 ################## -->
         <meta-data

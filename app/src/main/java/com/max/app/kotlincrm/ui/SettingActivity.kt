@@ -58,8 +58,7 @@ class SettingActivity : BaseActivity() {
         val cancel = dialog.findViewById(R.id.logout_dialog_cancle) as Button
         enter.setOnClickListener {
             JZBApplication.recycleAllActivity()
-            Sp.init_SP_Instance(this, JZBConstants.SP_USERINFO)
-            Sp.put_Boolean(JZBConstants.TAG_ISLOGIN, true)
+            Sp.delete_SP(mContext, JZBConstants.SP_USERINFO)
             mContext.finish()
         }
         cancel.setOnClickListener { dialog.dismiss() }

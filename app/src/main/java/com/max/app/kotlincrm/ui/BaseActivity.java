@@ -147,7 +147,16 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 			mActionBackLayout.setOnClickListener(onClickListener);
 		}
 	}
-
+	protected void setAbNext(String nextText, View.OnClickListener onClickListener){
+		mActionNextLayout.setVisibility(View.VISIBLE);
+		mActionBarNextText.setVisibility(View.VISIBLE);
+		mActionBarNextFlag.setVisibility(View.GONE);
+		mActionBarNextText.setText(nextText);
+		mActionNextLayout.setOnTouchListener(mOnTouchListener);
+		if(onClickListener != null){
+			mActionNextLayout.setOnClickListener(onClickListener);
+		}
+	}
 	protected void setAbSetting(View.OnClickListener onClickListener){
 		mActionBarSetting.setVisibility(View.VISIBLE);
 		mActionBarSetting.setOnTouchListener(mOnTouchListener);
