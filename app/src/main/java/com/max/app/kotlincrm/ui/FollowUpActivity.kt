@@ -2,13 +2,14 @@ package com.max.app.kotlincrm.ui
 
 import android.app.Activity
 import android.app.Dialog
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.Gravity
 import android.view.View
-import android.view.View.OnClickListener
+import android.view.View.*
 import android.widget.RadioGroup
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
@@ -19,7 +20,9 @@ import com.max.app.kotlincrm.api.JZBController
 import com.max.app.kotlincrm.api.JzbResponseHandler
 import com.max.app.kotlincrm.items.FollowUpModel
 import com.max.app.kotlincrm.ui.view.MyRecyclerDivider
+import com.max.app.kotlincrm.utils.DialogUtils
 import com.max.app.kotlincrm.utils.L
+import com.max.app.kotlincrm.utils.LocationUtil
 import com.max.app.kotlincrm.utils.MyToast
 import kotlinx.android.synthetic.main.activity_follow_up_layout.*
 import org.json.JSONObject
@@ -52,6 +55,7 @@ class FollowUpActivity : BaseActivity(), OnClickListener, RadioGroup.OnCheckedCh
     private var mIsPrivateLibrary = true// true跟进，false陪访
     private var mIsFillInfo = false
 
+    private var mProgressDialog : ProgressDialog? = null
     private val mContactList = ArrayList<Contact>()//联系人列表
     private var mSelectContact: Contact? = null
     companion object {
@@ -79,6 +83,7 @@ class FollowUpActivity : BaseActivity(), OnClickListener, RadioGroup.OnCheckedCh
         parseIntent()
         initView()
         L.md("customerId=$customerId")
+        initLocation()
     }
 
     private fun parseIntent() {
@@ -100,6 +105,7 @@ class FollowUpActivity : BaseActivity(), OnClickListener, RadioGroup.OnCheckedCh
 
     private fun initActionbar(){
         setAbTitle("跟进")
+        showAbBack()
     }
 
     private fun initView(){
@@ -107,6 +113,19 @@ class FollowUpActivity : BaseActivity(), OnClickListener, RadioGroup.OnCheckedCh
         rl_follow_object_layout.setOnClickListener(this)
         vg_follow_method.setOnCheckedChangeListener(this)
         vg_follow_communication.setOnCheckedChangeListener(this)
+
+        rv_tag_grid
+    }
+
+    private fun initLocation(){
+        mProgressDialog = DialogUtils.createSimpleProgressDialog(mContext)
+        LocationUtil.getInstance(mContext).getLocation {
+            mProgressDialog!!.dismiss()
+            longitude = it.longitude.toString()
+            latitude = it.latitude.toString()
+            address = it.addrStr
+            follow_up_location_name.text = address
+        }
     }
 
     override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
@@ -114,20 +133,25 @@ class FollowUpActivity : BaseActivity(), OnClickListener, RadioGroup.OnCheckedCh
             R.id.follow_up_type_wechat ->{
                 L.md("微信")
                 method = 3
+                follow_up_location_layout.visibility = GONE
             }
             R.id.follow_up_type_phone ->{
                 L.md("电话")
                 method = 0
+                follow_up_location_layout.visibility = GONE
             }
             R.id.follow_up_type_visit ->{
                 L.md("拜访")
                 method = 1
+                follow_up_location_layout.visibility = VISIBLE
             }
             R.id.follow_up_communication_out ->{
                 L.md("主动回访")
+                category = 1
             }
             R.id.follow_up_communication_in ->{
                 L.md("客户呼入")
+                category = 2
             }
         }
     }
