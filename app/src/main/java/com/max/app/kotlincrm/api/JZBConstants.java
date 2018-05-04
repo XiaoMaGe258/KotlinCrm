@@ -13,7 +13,7 @@ public class JZBConstants {
 
 	public static final String API_IP 					= DEBUG_MODE_ADVANCED ? API_TEST : API_ONLINE;
 
-	public static final String AKey 					= "1a72d3619c835f1b0513d0d1376e34f1";
+	public static final String AKey 					= "12a34b56c78d90ef12a34b56c78d90ef";
 
 	//用户基本信息
 	public static final String SP_USERINFO 				= "userInfo";
