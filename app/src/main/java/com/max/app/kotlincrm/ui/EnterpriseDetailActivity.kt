@@ -28,17 +28,17 @@ import java.util.ArrayList
 
 class EnterpriseDetailActivity : BaseActivity() {
 
-    var mRoleNumber: Int = 0
-    val mFragments = ArrayList<Fragment>()
+    private var mRoleNumber: Int = 0
+    private val mFragments = ArrayList<Fragment>()
     private val mTabs = arrayOf("跟进记录", "联系人", "客户资料")
     private var mPopupWindow: PopupWindow? = null
 
-    var name: String = ""
-    var levelDec: String = ""
-    var flag: String = ""
-    var customerId: String = ""
-    var isMineLib: Boolean = true
-    var fromPage: Int = 0
+    private var name: String = ""
+    private var levelDec: String = ""
+    private var flag: String = ""
+    private var customerId: String = ""
+    private var isMineLib: Boolean = true
+    private var fromPage: Int = 0
 
     companion object {
         fun actionActivity(context: Activity, name: String?, levelDec: String?, flag: String?,
