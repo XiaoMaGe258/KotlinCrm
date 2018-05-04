@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        >
+
+        <TextView
+            android:id="@+id/contact_item_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/round_red_90_bg"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:paddingBottom="3dp"
+            android:text="王"
+            android:textSize="22sp"
+            android:layout_marginLeft="15dp"
+            />
+
+        <TextView
+            android:id="@+id/contact_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/contact_item_icon"
+            android:text="王经理"
+            android:layout_marginLeft="10dp"
+            android:textSize="16sp"
+            />
+
+        <TextView
+            android:id="@+id/contact_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/contact_item_name"
+            android:text="（HR经理）"
+            android:textSize="16sp"
+            android:textColor="@color/salary_gray"
+            />
+
+
+        <TextView
+            android:id="@+id/contact_item_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/contact_item_name"
+            android:layout_toRightOf="@id/contact_item_icon"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="TEL：13355446678"
+            android:textColor="@color/salary_gray"
+            />
+
+        <TextView
+            android:id="@+id/contact_item_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/contact_item_phone"
+            android:layout_toRightOf="@id/contact_item_icon"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="Email：aaaaa@123.com"
+            android:textColor="@color/salary_gray"
+            />
+
+        <TextView
+            android:id="@+id/contact_item_qq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/contact_item_email"
+            android:layout_toRightOf="@id/contact_item_icon"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="qq：9128473324"
+            android:textColor="@color/salary_gray"
+            />
+
+        <TextView
+            android:id="@+id/contact_item_edit"
+            android:layout_width="50dp"
+            android:layout_height="22dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/contact_item_name"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/round_green_bg"
+            android:gravity="center"
+            android:text="编辑"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            />
+    </RelativeLayout>
+
+</LinearLayout>

@@ -127,6 +127,12 @@ public class JZBController {
         getOkHttp(url,responseHandler);
     }
 
+    //获取联系人列表
+    public void getContactList(String customerId, StringCallback responseHandler){
+        String url = JZBConstants.API_IP + "/contacts?customer_id=" + customerId;
+        getOkHttp(url, responseHandler);
+    }
+
     //离访
     public void postLeaveFollowup(String followupId, StringCallback responseHandler){
         HashMap<String, Object> params = new HashMap<>();

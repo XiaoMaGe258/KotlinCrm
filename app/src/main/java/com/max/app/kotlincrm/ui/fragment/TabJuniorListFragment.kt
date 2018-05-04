@@ -168,7 +168,7 @@ class TabJuniorListFragment: Fragment(), OnRefreshListener, OnLoadmoreListener, 
     }
     private var mOnLibraryItemClickListener = BaseQuickAdapter.OnItemClickListener {
         adapter: BaseQuickAdapter<Any, BaseViewHolder>, view: View, position: Int ->
-        val item = adapter.getItem(position) as TabMyListFragment.PrivateLibraryListItem
+        val item = adapter.getItem(position) as PrivateLibraryListItem
         var flag = ""
         when {
             item.applyContact -> flag = "已申请签约"

@@ -13,6 +13,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.max.app.kotlincrm.R
 import com.max.app.kotlincrm.api.JZBConstants
+import com.max.app.kotlincrm.ui.fragment.TabEnterpriseContact
 import com.max.app.kotlincrm.ui.fragment.TabEnterpriseFollow
 import com.max.app.kotlincrm.utils.Sp
 import com.max.app.kotlincrm.utils.Utils
@@ -114,8 +115,8 @@ class EnterpriseDetailActivity : BaseActivity() {
         }
 
         mFragments.add(TabEnterpriseFollow())
-        mFragments.add(TabEnterpriseFollow())
-        mFragments.add(TabEnterpriseFollow())
+        mFragments.add(TabEnterpriseContact())
+        mFragments.add(TabEnterpriseContact())
 
         vp_tab_item_pager.adapter = MyPagerAdapter(supportFragmentManager)
         tl_sliding_tab.setViewPager(vp_tab_item_pager)
@@ -131,13 +132,13 @@ class EnterpriseDetailActivity : BaseActivity() {
         val tvFollowUp = contentView.findViewById(R.id.tv_follow_up) as TextView
         val tvCollection = contentView.findViewById(R.id.tv_collection) as TextView
         val tvAddContact = contentView.findViewById(R.id.tv_add_contact) as TextView
-        val tvSchedule = contentView.findViewById(R.id.tv_schedule) as TextView
+//        val tvSchedule = contentView.findViewById(R.id.tv_schedule) as TextView
         tvFollowUp.setOnClickListener({
             FollowUpActivity.actionActivity(mContext, customerId, name, isMineLib)
         })
         tvCollection.setOnClickListener(this)
         tvAddContact.setOnClickListener(this)
-        tvSchedule.setOnClickListener(this)
+//        tvSchedule.setOnClickListener(this)
         mPopupWindow!!.showAsDropDown(mActionNextLayout, 0, 0)
     }
 
