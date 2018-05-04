@@ -15,6 +15,7 @@ import com.max.app.kotlincrm.R
 import com.max.app.kotlincrm.api.JZBController
 import com.max.app.kotlincrm.api.JzbResponseHandler
 import com.max.app.kotlincrm.items.ContactItem
+import com.max.app.kotlincrm.ui.AddContactActivity
 import com.max.app.kotlincrm.ui.EnterpriseDetailActivity
 import com.max.app.kotlincrm.ui.view.MyRecyclerDivider
 import com.max.app.kotlincrm.utils.Utils
@@ -115,7 +116,7 @@ class TabEnterpriseContact : Fragment(), OnRefreshListener {
             }
             holder.getView<TextView>(R.id.contact_item_edit).setOnClickListener({
                 val customerId = (activity as EnterpriseDetailActivity).getCId()
-//                AddContactActivity.actionActivity(activity, customerId, items.contactId, items)
+                AddContactActivity.actionActivity(activity, customerId, items)
             })
         }
     }

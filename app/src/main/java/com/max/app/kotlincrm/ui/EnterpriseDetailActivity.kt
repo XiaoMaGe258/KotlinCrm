@@ -138,7 +138,9 @@ class EnterpriseDetailActivity : BaseActivity() {
             FollowUpActivity.actionActivity(mContext, customerId, name, isMineLib)
         })
         tvCollection.setOnClickListener(this)
-        tvAddContact.setOnClickListener(this)
+        tvAddContact.setOnClickListener({
+            AddContactActivity.actionActivity(mContext, customerId, null)
+        })
 //        tvSchedule.setOnClickListener(this)
         mPopupWindow!!.showAsDropDown(mActionNextLayout, 0, 0)
     }

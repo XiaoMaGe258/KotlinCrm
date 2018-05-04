@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="InputBar">
+        <attr name="iptMust" format="boolean"/>
+        <attr name="iptTitle" format="string"/>
+        <attr name="iptContent" format="string"/>
+        <attr name="iptHint" format="string"/>
+    </declare-styleable>
+</resources>

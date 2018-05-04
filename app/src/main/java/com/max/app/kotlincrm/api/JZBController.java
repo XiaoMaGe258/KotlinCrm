@@ -159,6 +159,17 @@ public class JZBController {
         getOkHttp(url,responseHandler);
     }
 
+    //添加联系人
+    public void postAddContact(HashMap<String, Object> params, StringCallback responseHandler){
+        String url=JZBConstants.API_IP+"/api/crm/customer/addcontact";
+        postOkHttp(url, params, responseHandler);
+    }
+
+    //编辑联系人
+    public void postEditContact(HashMap<String, Object> params, StringCallback responseHandler){
+        String url=JZBConstants.API_IP+"/api/crm/customer/contact/update/commit";
+        postOkHttp(url, params, responseHandler);
+    }
 
 //-------------------------------------------------------------------------------------
 

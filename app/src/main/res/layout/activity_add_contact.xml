@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ipt="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    android:orientation="vertical">
+
+    <com.max.app.kotlincrm.ui.view.InputBar
+        android:id="@+id/ib_contact_name"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        ipt:iptTitle="联系人" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#eeeeee"
+        />
+    <com.max.app.kotlincrm.ui.view.InputBar
+        android:id="@+id/ib_contact_phone"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        ipt:iptTitle="手机" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#eeeeee"
+        />
+    <com.max.app.kotlincrm.ui.view.InputBar
+        android:id="@+id/ib_contact_telephone"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        ipt:iptTitle="座机"
+        ipt:iptMust="false"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#eeeeee"
+        />
+    <com.max.app.kotlincrm.ui.view.InputBar
+        android:id="@+id/ib_contact_email"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        ipt:iptTitle="邮箱" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#eeeeee"
+        />
+    <com.max.app.kotlincrm.ui.view.InputBar
+        android:id="@+id/ib_contact_qq"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        ipt:iptTitle="QQ号"
+        ipt:iptMust="false"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#eeeeee"
+        />
+    <com.max.app.kotlincrm.ui.view.InputBar
+        android:id="@+id/ib_contact_job"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        ipt:iptTitle="职位" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#eeeeee"
+        />
+    <com.max.app.kotlincrm.ui.view.InputBar
+        android:id="@+id/ib_contact_address"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        ipt:iptTitle="地址"
+        ipt:iptMust="false"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#eeeeee"
+        />
+    <RelativeLayout
+        android:id="@+id/lay_contact_master_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:background="#eeeeee" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="25dp"
+            android:text="是否决策人"
+            android:textSize="16sp" />
+
+        <RadioGroup
+            android:id="@+id/rg_contact_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30dp"
+            android:background="#FFFFFF"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/rb_contact_yes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/check_box_select_bg"
+                android:checked="true"
+                android:text="  是" >
+            </RadioButton>
+
+            <RadioButton
+                android:id="@+id/rb_contact_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/check_box_select_bg"
+                android:layout_marginLeft="20dp"
+                android:text="  否" >
+            </RadioButton>
+        </RadioGroup>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_login_button"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/app_green"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="确 认"
+        android:textColor="#ffffff"
+        android:textSize="16sp" />
+
+</LinearLayout>
