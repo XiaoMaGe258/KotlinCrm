@@ -254,6 +254,9 @@
                     android:id="@+id/rv_tag_grid"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingTop="10dp"
                     />
 
                 <View

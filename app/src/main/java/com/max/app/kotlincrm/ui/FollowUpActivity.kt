@@ -4,28 +4,36 @@ import android.app.Activity
 import android.app.Dialog
 import android.app.ProgressDialog
 import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
+import android.provider.MediaStore
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.Gravity
 import android.view.View
 import android.view.View.*
+import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.RadioGroup
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.max.app.kotlincrm.MainManagerActivity
 import com.max.app.kotlincrm.R
 import com.max.app.kotlincrm.api.JZBController
 import com.max.app.kotlincrm.api.JzbResponseHandler
 import com.max.app.kotlincrm.items.FollowUpModel
+import com.max.app.kotlincrm.items.NormalKVItem
+import com.max.app.kotlincrm.ui.view.MyRecyclerDecoration
 import com.max.app.kotlincrm.ui.view.MyRecyclerDivider
-import com.max.app.kotlincrm.utils.DialogUtils
-import com.max.app.kotlincrm.utils.L
-import com.max.app.kotlincrm.utils.LocationUtil
-import com.max.app.kotlincrm.utils.MyToast
+import com.max.app.kotlincrm.utils.*
 import kotlinx.android.synthetic.main.activity_follow_up_layout.*
 import org.json.JSONObject
+import java.io.File
 import java.util.*
 
 /**
@@ -33,7 +41,7 @@ import java.util.*
  * Created by Xmg on 2018-4-24.
  */
 
-class FollowUpActivity : BaseActivity(), OnClickListener, RadioGroup.OnCheckedChangeListener {
+class FollowUpActivity : BaseActivity(), OnClickListener, RadioGroup.OnCheckedChangeListener, BaseQuickAdapter.OnItemClickListener {
 
     private var mFollowUpModel: FollowUpModel? = null
 
@@ -55,9 +63,15 @@ class FollowUpActivity : BaseActivity(), OnClickListener, RadioGroup.OnCheckedCh
     private var mIsPrivateLibrary = true// true跟进，false陪访
     private var mIsFillInfo = false
 
+    private var mSmallBitmap: Bitmap? = null
+    private var mPictureFile: File? = null
+
     private var mProgressDialog : ProgressDialog? = null
     private val mContactList = ArrayList<Contact>()//联系人列表
     private var mSelectContact: Contact? = null
+    private val mTagList = ArrayList<NormalKVItem>()
+    private val mSelectTagList = ArrayList<NormalKVItem>()
+    private var mGridAdapter: GridViewAdapter? = null
     companion object {
         fun actionActivity(context: Activity, customerId: String,
                            enterpriseName: String, isMineLib: Boolean) {
@@ -82,8 +96,8 @@ class FollowUpActivity : BaseActivity(), OnClickListener, RadioGroup.OnCheckedCh
         initActionbar()
         parseIntent()
         initView()
-        L.md("customerId=$customerId")
         initLocation()
+        initTagList()
     }
 
     private fun parseIntent() {
@@ -114,7 +128,15 @@ class FollowUpActivity : BaseActivity(), OnClickListener, RadioGroup.OnCheckedCh
         vg_follow_method.setOnCheckedChangeListener(this)
         vg_follow_communication.setOnCheckedChangeListener(this)
 
-        rv_tag_grid
+        rv_tag_grid.layoutManager = GridLayoutManager(this, 3)
+        mGridAdapter = GridViewAdapter(R.layout.tag_gridview_item, mTagList)
+        rv_tag_grid.addItemDecoration(MyRecyclerDecoration(mContext, 5))
+        rv_tag_grid.adapter = mGridAdapter
+        mGridAdapter!!.onItemClickListener = this
+
+        follow_up_location_btn.setOnClickListener(this)
+        follow_up_sign_btn.setOnClickListener(this)
+        follow_up_look_image_layout.setOnClickListener(this)
     }
 
     private fun initLocation(){
@@ -126,6 +148,39 @@ class FollowUpActivity : BaseActivity(), OnClickListener, RadioGroup.OnCheckedCh
             address = it.addrStr
             follow_up_location_name.text = address
         }
+    }
+
+    private fun initTagList(){
+        JZBController.getInstance(mContext).getFollowTags(object: JzbResponseHandler(mContext){
+            override fun onHttpSuccessStatusOk(jsonObject: JSONObject?) {
+                val dataArray = jsonObject!!.optJSONArray("data")
+                if (dataArray != null) {
+                    mTagList.clear()
+                    for (i in 0 until dataArray.length()) {
+                        mTagList.add(NormalKVItem("", dataArray.optString(i)))
+                    }
+                    mGridAdapter!!.notifyDataSetChanged()
+                    setTagList(label)
+                }
+            }
+        })
+    }
+
+    private fun setTagList(listStr: String) {
+        if (listStr.isEmpty() || Utils.isNull(listStr) || mTagList.size == 0) {
+            return
+        }
+        val strArray = listStr.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+        mSelectTagList.clear()
+        for (str in strArray) {
+            mSelectTagList.add(NormalKVItem("", str))
+            for (i in mTagList.indices) {
+                if (mTagList[i].getName() == str) {
+                    mTagList[i].isSelect = true
+                }
+            }
+        }
+        mGridAdapter!!.notifyDataSetChanged()
     }
 
     override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
@@ -159,6 +214,7 @@ class FollowUpActivity : BaseActivity(), OnClickListener, RadioGroup.OnCheckedCh
     override fun onClick(v: View?) {
         when(v){
             rl_follow_object_layout -> {
+                //跟进对象
                 JZBController.getInstance(mContext).getFollowObject(customerId,
                         object : JzbResponseHandler(mContext) {
                             override fun onHttpSuccessStatusOk(jsonObject: JSONObject?) {
@@ -178,7 +234,94 @@ class FollowUpActivity : BaseActivity(), OnClickListener, RadioGroup.OnCheckedCh
                         }
                 )
             }
+            follow_up_location_btn -> {
+                //重新定位
+                initLocation()
+            }
+            follow_up_sign_btn -> {
+                //到访拍照
+                PickImageUtil.getInstance(mContext).camera(object : PickImageUtil.IGetSelectBitmap {
+
+                    override fun getSelImageBitmap(bitmap: Bitmap, id: Int) {
+                    }
+
+                    override fun getSelImageFile(file: File) {
+                        mSmallBitmap = ImageUtils.getSmallBitMap(file.absolutePath, 480, 800)
+                        L.d("xmg", "file size=" + file.length() + "  path=" + file.absolutePath)
+                        val sPath = ImageUtils.saveImage2SD("jianzhibao", "tempFollowPicture.jpg", mSmallBitmap)
+                        try {
+                            file.delete()
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                        }
+
+                        mPictureFile = File(sPath)
+                        follow_up_look_image_layout.visibility = View.VISIBLE
+                    }
+                })
+            }
+            follow_up_look_image_layout -> {
+                if (mSmallBitmap == null)
+                    return
+                showImageDialog(mSmallBitmap!!)
+            }
         }
+    }
+
+    override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
+        val type = adapter!!.getItem(position) as NormalKVItem
+        if (containsItem(type)) {
+            removeItem(type)
+        } else {
+            mSelectTagList.add(type)
+        }
+
+        mTagList[position].isSelect = !mTagList[position].isSelect
+        mGridAdapter!!.notifyDataSetChanged()
+    }
+
+    private fun containsItem(category: NormalKVItem): Boolean {
+        for (type in mSelectTagList) {
+            if (type.name == category.name) {
+                return true
+            }
+        }
+        return false
+    }
+
+    private fun removeItem(category: NormalKVItem) {
+        var tempArray: ArrayList<NormalKVItem>? = ArrayList()
+        for (type in mSelectTagList) {
+            if (type.name != category.name) {
+                tempArray!!.add(type)
+            }
+        }
+        mSelectTagList.clear()
+        mSelectTagList.addAll(tempArray!!)
+        tempArray!!.clear()
+        tempArray = null
+    }
+
+    private fun getSelectTagStr(): String {
+        val sb = StringBuilder()
+        for (item in mSelectTagList) {
+            if (sb.isNotEmpty()) {
+                sb.append(",")
+            }
+            sb.append(item.getName())
+        }
+        return sb.toString()
+    }
+
+    private fun showImageDialog(bitmap: Bitmap) {
+        val dialog = Dialog(mContext, R.style.DialogFullScreen)
+        dialog.setContentView(R.layout.imageview_layout)
+        dialog.window!!.setGravity(Gravity.CENTER)
+        dialog.setCanceledOnTouchOutside(true)
+        dialog.show()
+        val image = dialog.findViewById(R.id.image_view) as ImageView
+        image.setImageBitmap(bitmap)
+        image.setOnClickListener { dialog.dismiss() }
     }
 
     private fun alertContactDialog() {
@@ -205,11 +348,33 @@ class FollowUpActivity : BaseActivity(), OnClickListener, RadioGroup.OnCheckedCh
         override fun convert(holder: BaseViewHolder?, item: Contact?) {
             holder!!.setText(R.id.tv_one_text, item!!.name)
         }
-
     }
 
     inner class Contact {
         internal var contactId: String? = null
         internal var name: String? = null
+    }
+
+    inner class GridViewAdapter(layoutResId: Int, data: List<NormalKVItem>) :
+            BaseQuickAdapter<NormalKVItem, BaseViewHolder>(layoutResId, data) {
+
+        override fun convert(helper: BaseViewHolder, item: NormalKVItem) {
+            helper.setText(R.id.item_name, item.name)
+
+            if (item.isSelect) {
+                helper.setTextColor(R.id.item_name, resources.getColor(R.color.white))
+                helper.getView<ViewGroup>(R.id.bank_handwrite_layout)
+                        .setBackgroundResource(R.drawable.button_round_green)
+            } else {
+                helper.setTextColor(R.id.item_name, resources.getColor(R.color.text_gray_dark_lf))
+                helper.getView<ViewGroup>(R.id.bank_handwrite_layout)
+                        .setBackgroundResource(R.drawable.button_round_gray_xxxlight)
+            }
+
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        PickImageUtil.getInstance(mContext).onActivityResult(requestCode, resultCode, data)
     }
 }

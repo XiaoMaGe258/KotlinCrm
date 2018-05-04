@@ -153,6 +153,12 @@ public class JZBController {
         getOkHttp(url,responseHandler);
     }
 
+    //跟进内容标签
+    public void getFollowTags(StringCallback responseHandler){
+        String url=JZBConstants.API_IP + "//api/app/customer/followup/contentlabel";
+        getOkHttp(url,responseHandler);
+    }
+
 
 //-------------------------------------------------------------------------------------
 

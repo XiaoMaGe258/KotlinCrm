@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <RelativeLayout
+        android:id="@+id/bank_handwrite_layout"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@drawable/button_round_gray_xxxlight"
+        >
+
+        <TextView
+            android:id="@+id/item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="不限"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textColor="@color/text_gray_dark_lf"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+
+</FrameLayout>
