@@ -15,6 +15,7 @@ import com.max.app.kotlincrm.R
 import com.max.app.kotlincrm.api.JZBConstants
 import com.max.app.kotlincrm.ui.fragment.TabEnterpriseContact
 import com.max.app.kotlincrm.ui.fragment.TabEnterpriseFollow
+import com.max.app.kotlincrm.ui.fragment.TabEnterpriseInfo
 import com.max.app.kotlincrm.utils.Sp
 import com.max.app.kotlincrm.utils.Utils
 import kotlinx.android.synthetic.main.activity_enterprise_detail_layout.*
@@ -116,7 +117,7 @@ class EnterpriseDetailActivity : BaseActivity() {
 
         mFragments.add(TabEnterpriseFollow())
         mFragments.add(TabEnterpriseContact())
-        mFragments.add(TabEnterpriseContact())
+        mFragments.add(TabEnterpriseInfo())
 
         vp_tab_item_pager.adapter = MyPagerAdapter(supportFragmentManager)
         tl_sliding_tab.setViewPager(vp_tab_item_pager)

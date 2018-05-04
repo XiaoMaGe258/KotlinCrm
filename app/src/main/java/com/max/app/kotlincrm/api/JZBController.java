@@ -133,6 +133,12 @@ public class JZBController {
         getOkHttp(url, responseHandler);
     }
 
+    //获取企业信息
+    public void getEnterpriseModelInfo(String customerId, StringCallback responseHandler){
+        String url = JZBConstants.API_IP + "/customers/" + customerId;
+        getOkHttp(url, responseHandler);
+    }
+
     //离访
     public void postLeaveFollowup(String followupId, StringCallback responseHandler){
         HashMap<String, Object> params = new HashMap<>();
